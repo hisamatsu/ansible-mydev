@@ -1,0 +1,9 @@
+---
+cargo_install_packages:
+  - bat
+  - git-delta
+  - eza
+  - fd-find
+  - ripgrep
+  - starship
+  - zoxide

@@ -1,0 +1,9 @@
+---
+- name: Git checkout fzf
+  ansible.builtin.git:
+    repo: "{{ fzf_repo }}"
+    dest: "{{ ansible_user_home }}/.fzf"
+    depth: 1
+
+- name: Install fzf
+  ansible.builtin.command:  "{{ ansible_user_home }}/.fzf/install --xdg"

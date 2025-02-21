@@ -1,0 +1,74 @@
+---
+- name: Configure host.
+  hosts: all
+
+  vars_files:
+    - config.yml
+
+  pre_tasks:
+  - name: Get ansible_user home directory
+    shell: 'getent passwd "{{ ansible_user_id }}" | cut -d: -f6'
+    register: home_result
+
+  - name: Store the user's home directory as a fact
+    set_fact:
+      ansible_user_home: '{{ home_result.stdout }}'
+
+  - name: Create a tmp directory for ansible
+    ansible.builtin.tempfile:
+      state: directory
+    register: tmpdir
+
+  - name: Store the tmp directory as a fact
+    set_fact:
+      ansible_tmpdir: '{{ tmpdir.path }}'
+
+  - name: Create a XDG_CONFIG_HOME directory
+    ansible.builtin.file:
+      path: "{{ xdg_config_home }}"
+      state: directory
+
+  - name: Create a XDG_CACHE_HOME directory
+    ansible.builtin.file:
+      path: "{{ xdg_cache_home }}"
+      state: directory
+
+  - name: Delete .bashrc if exits
+    ansible.builtin.file:
+      path: "{{ ansible_user_home }}/.bashrc"
+      state: absent
+
+  - name: Delete .profile if exits
+    ansible.builtin.file:
+      path: "{{ ansible_user_home }}/.profile"
+      state: absent
+
+  - name: Copy initial .bashrc
+    ansible.builtin.command: cp /etc/skel/.bashrc "{{ ansible_user_home }}"
+
+  - name: Copy initial .profile
+    ansible.builtin.command: cp /etc/skel/.profile "{{ ansible_user_home }}"
+
+  roles:
+    - role: deb_packages
+    - role: go
+    - role: go_install
+    - role: rust
+    - role: cargo_install
+    - role: neovim
+    - role: fzf
+    - role: oh_my_tmux
+    - role: dotfiles
+    - role: bash_it
+    - role: ssh_config
+
+  post_tasks:
+  - name: ghq get myansible
+    ansible.builtin.command: "ghq get --update {{ myansible_repo }}"
+    environment:
+      PATH: "{{ ansible_user_home}}/go/bin:{{ ansible_env.PATH }}"
+
+  - name: Delete the tmp directory for ansible
+    ansible.builtin.file:
+      path: "{{ ansible_tmpdir }}"
+      state: absent

@@ -1,0 +1,17 @@
+---
+- name: Git checkout bash_it
+  ansible.builtin.git:
+    repo: "{{ bash_it_repo }}"
+    dest: "{{ bash_it_checkout_location }}"
+    depth: 1
+
+- name: Install bash_it
+  ansible.builtin.command: "{{ bash_it_checkout_location }}/install.sh --no-modify-config"
+
+- name: Enable plugins
+  ansible.builtin.shell: |
+    source {{ bash_it_checkout_location }}/bash_it.sh
+    bash-it enable plugin {{ item }}
+  args:
+    executable: /bin/bash
+  loop: "{{ bash_it_enable_plugins }}"

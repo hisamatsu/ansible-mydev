@@ -1,0 +1,12 @@
+---
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: yes
+
+- name: apt install
+  ansible.builtin.apt:
+    name: "{{ item }}"
+  loop: "{{ apt_install_packages }}"
+  become: yes

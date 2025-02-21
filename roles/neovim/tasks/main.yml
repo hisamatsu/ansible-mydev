@@ -1,0 +1,40 @@
+---
+- name: Download neovim
+  get_url:
+    url: "{{ neovim_download_location }}"
+    dest: "{{ ansible_tmpdir }}"
+
+- name: Remove old installation of neovim
+  ansible.builtin.file:
+    path: "{{ ansible_user_home }}/.local/nvim-linux-x86_64"
+    state: absent
+
+- name: Extract the neovim tarball
+  unarchive:
+    src: "{{ ansible_tmpdir }}/{{ neovim_tarball }}"
+    dest: "{{ ansible_user_home }}/.local"
+    copy: no
+
+- name: Create a symlink to neovim
+  ansible.builtin.file:
+    src: "{{ ansible_user_home }}/.local/nvim-linux-x86_64/bin/nvim"
+    dest: "{{ ansible_user_home }}/.local/bin/nvim"
+    state: link
+
+- name: ghq get vimrc
+  ansible.builtin.command: "ghq get --update {{ vimrc_repo }}"
+  environment:
+    PATH: "{{ ansible_user_home}}/go/bin:{{ ansible_env.PATH }}"
+
+- name: Create direcotries for vimrc
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ vimrc_dirs }}"
+
+- name: Create symlinks to vimrc files
+  ansible.builtin.file:
+    src: "{{ vimrc_checkout_location }}/{{ item }}"
+    dest: "{{ vimrc_dir }}/{{ item }}"
+    state: link
+  loop: "{{ vimrc_files }}"
