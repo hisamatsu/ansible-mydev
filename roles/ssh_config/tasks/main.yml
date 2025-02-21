@@ -1,0 +1,24 @@
+---
+- name: ghq get dotfiles
+  ansible.builtin.command: "ghq get --update {{ ssh_config_repo }}"
+  environment:
+    PATH: "{{ ansible_user_home}}/go/bin:{{ ansible_env.PATH }}"
+
+- name: Create direcotries for ssh config
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ ssh_config_dirs }}"
+
+- name: Delete ssh config files
+  ansible.builtin.file:
+    path: "{{ ansible_user_home }}/.ssh/{{ item }}"
+    state: absent
+  loop: "{{ ssh_config_files }}"
+
+- name: Create symlinks to dotfiles
+  ansible.builtin.file:
+    src: "{{ ssh_config_checkout_location }}/{{ item }}"
+    dest: "{{ ansible_user_home }}/.ssh/{{ item }}"
+    state: link
+  loop: "{{ ssh_config_files }}"

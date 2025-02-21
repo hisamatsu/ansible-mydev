@@ -1,0 +1,28 @@
+---
+- name: Download the Go
+  get_url:
+    url: "{{ go_download_location }}"
+    dest: "{{ ansible_tmpdir }}"
+
+- name: Remove old installation of Go
+  ansible.builtin.file:
+    path: "{{ ansible_user_home }}/.local/go"
+    state: absent
+
+- name: Extract the Go tarball
+  unarchive:
+    src: "{{ ansible_tmpdir }}/{{ go_tarball }}"
+    dest: "{{ ansible_user_home }}/.local"
+    copy: no
+
+- name: Create a symlink to go
+  ansible.builtin.file:
+    src: "{{ ansible_user_home }}/.local/go/bin/go"
+    dest: "{{ ansible_user_home }}/.local/bin/go"
+    state: link
+
+- name: Create a symlink to gofmt
+  ansible.builtin.file:
+    src: "{{ ansible_user_home }}/.local/go/bin/gofmt"
+    dest: "{{ ansible_user_home }}/.local/bin/gofmt"
+    state: link

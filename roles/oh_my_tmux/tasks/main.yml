@@ -1,0 +1,17 @@
+---
+- name: Git checkout oh my tmux!
+  ansible.builtin.git:
+    repo: "{{ oh_my_tmux_repo }}"
+    dest: "{{ ansible_user_home }}/.tmux"
+    single_branch: true
+
+- name: create a XDG_CONFIG_HOME/tmux directory
+  ansible.builtin.file:
+    path: "{{ xdg_config_home }}/tmux"
+    state: directory
+
+- name: Create a symlink to tmux
+  ansible.builtin.file:
+    src: "{{ ansible_user_home }}/.tmux/.tmux.conf"
+    dest: "{{ xdg_config_home }}/tmux/tmux.conf"
+    state: link

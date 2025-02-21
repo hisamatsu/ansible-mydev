@@ -1,0 +1,3 @@
+---
+rust_installer: "rustup.sh"
+rust_download_location: "https://sh.rustup.rs"

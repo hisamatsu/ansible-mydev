@@ -1,0 +1,24 @@
+---
+- name: ghq get dotfiles
+  ansible.builtin.command: "ghq get --update {{ dotfiles_repo }}"
+  environment:
+    PATH: "{{ ansible_user_home}}/go/bin:{{ ansible_env.PATH }}"
+
+- name: Create direcotries for dotfiles
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ dotfiles_dirs }}"
+
+- name: Delete dotfiles
+  ansible.builtin.file:
+    path: "{{ ansible_user_home }}/{{ item }}"
+    state: absent
+  loop: "{{ dotfiles }}"
+
+- name: Create symlinks to dotfiles
+  ansible.builtin.file:
+    src: "{{ dotfiles_checkout_location }}/{{ item }}"
+    dest: "{{ ansible_user_home }}/{{ item }}"
+    state: link
+  loop: "{{ dotfiles }}"

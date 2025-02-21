@@ -1,0 +1,3 @@
+---
+go_get_install_packages:
+  - github.com/x-motemen/ghq@latest

@@ -1,0 +1,7 @@
+---
+- name: cargo install
+  community.general.cargo:
+    name: "{{ item }}"
+  loop: "{{ cargo_install_packages }}"
+  environment:
+    PATH: "{{ ansible_user_home}}/.cargo/bin:{{ ansible_env.PATH }}"

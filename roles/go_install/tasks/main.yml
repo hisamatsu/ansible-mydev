@@ -1,0 +1,4 @@
+---
+- name: go install
+  ansible.builtin.command: "go install {{ item }}"
+  loop: "{{ go_get_install_packages }}"

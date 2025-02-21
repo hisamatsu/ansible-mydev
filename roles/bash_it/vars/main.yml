@@ -1,0 +1,10 @@
+---
+bash_it_repo: "https://github.com/Bash-it/bash-it.git"
+bash_it_checkout_location: "{{ ansible_user_home }}/.bash_it"
+bash_it_enable_plugins:
+  - fzf
+  - git
+  - man
+  - ssh
+  - tmux
+  - zoxide

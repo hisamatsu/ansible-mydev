@@ -1,0 +1,15 @@
+---
+ssh_config_repo: "https://github.com/hisamatsu/ssh-config.git"
+ssh_config_checkout_location: "{{ ansible_user_home }}/ghq/github.com/hisamatsu/ssh-config"
+
+ssh_config_dirs:
+  - "{{ ansible_user_home }}/.ssh"
+  - "{{ ansible_user_home }}/.ssh/conf.d"
+
+ssh_config_files:
+  - agent_keys
+  - conf.d/cedownload.dayz.conf
+  - conf.d/dayz.conf
+  - conf.d/misc.conf
+  - conf.d/oecu.conf
+  - config

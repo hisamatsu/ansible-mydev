@@ -1,0 +1,21 @@
+---
+neovim_tarball: "nvim-linux-x86_64.tar.gz"
+neovim_tarball_checksum: "sha256:95aaa8e89473f5421114f2787c13ae0ec6e11ebbd1a13a1bd6fcf63420f8073f"
+neovim_download_location: "https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz"
+
+vimrc_repo: "https://github.com/hisamatsu/vimrc.git"
+vimrc_checkout_location: "{{ ansible_user_home}}/ghq/github.com/hisamatsu/vimrc"
+vimrc_dir: "{{ xdg_config_home}}/nvim"
+vimrc_dirs:
+  - "{{ vimrc_dir }}"
+  - "{{ vimrc_dir }}/lua"
+  - "{{ vimrc_dir }}/lua/config"
+vimrc_files:
+  - init.lua
+  - lua/config/comment.lua
+  - lua/config/fzf-lua.lua
+  - lua/config/gitsigns.lua
+  - lua/config/lualine.lua
+  - lua/config/oil.lua
+  - lua/lazy_nvim.lua
+  - lua/plugins.lua

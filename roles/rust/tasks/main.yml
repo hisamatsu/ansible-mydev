@@ -1,0 +1,9 @@
+---
+- name: Download rustup installer
+  ansible.builtin.get_url:
+    url: "{{ rust_download_location }}"
+    dest: "{{ ansible_tmpdir }}/{{ rust_installer }}"
+    mode: 0755
+
+- name: Install rust
+  ansible.builtin.command: "{{ ansible_tmpdir }}/{{ rust_installer }} -y"

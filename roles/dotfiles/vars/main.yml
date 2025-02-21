@@ -1,0 +1,18 @@
+---
+dotfiles_repo: "https://github.com/hisamatsu/dotfiles.git"
+dotfiles_checkout_location: "{{ ansible_user_home }}/ghq/github.com/hisamatsu/dotfiles"
+
+dotfiles_dirs:
+  - "{{ xdg_config_home }}/fzf"
+  - "{{ xdg_config_home }}/git"
+  - "{{ xdg_config_home }}/starship"
+  - "{{ xdg_config_home }}/tmux"
+
+dotfiles:
+  - .bash_aliases
+  - .bashrc
+  - .config/fzf/fzf.bash.local
+  - .config/git/config
+  - .config/starship/starship.toml
+  - .config/tmux/tmux.conf.local
+  - .profile
