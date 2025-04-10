@@ -27,10 +27,11 @@ Packages (installed with go install):
 
 Packages (installed with cargo install):
   - bat
-  - fd-find
+  - git-delta
   - eza
-  - ripgrep
   - fd-find
+  - ripgrep
+  - starship
   - zoxide
 
 Packages (installed with git)
