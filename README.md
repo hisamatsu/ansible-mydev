@@ -8,7 +8,7 @@ However, everything is documented here.
 
   1. Prepare `${HOME}/.netrc` for GitHub authentication (the `.netrc` file must have `0600` permissions).
   2. Run `sudo apt update`
-  3. Install pipx: `pipx ensurepath`
+  3. Install pipx: `sudo apt install pipx`
   4. Ensure `pipx` is added to your path: `pipx ensurepath`
   5. Source your .bashrc: `source .bashrc`
   6. Install ansible `pipx install --include-deps ansible`
