@@ -14,7 +14,7 @@ However, everything is documented here.
   6. Install ansible `pipx install --include-deps ansible`
   7. Clone or download this repository to your local drive.
   8. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your password when prompted for the 'BECOME' password.
-  9. Place your secret keys in `${HOME}.ssh`
+  9. Place your secret keys in `${HOME}/.ssh`
 
 ## Included Applications / Configuration
 
