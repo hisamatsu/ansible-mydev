@@ -21,6 +21,11 @@
     dest: "{{ ansible_user_home }}/.local/bin/nvim"
     state: link
 
+- name: Delete repository
+  ansible.builtin.file:
+    path: "{{ vimrc_checkout_location }}"
+    state: absent
+
 - name: ghq get vimrc
   ansible.builtin.command: "ghq get --update {{ vimrc_repo }}"
   environment:

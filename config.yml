@@ -3,3 +3,4 @@ xdg_config_home: "{{ ansible_user_home }}/.config"
 xdg_cache_home: "{{ ansible_user_home }}/.cache"
 
 myansible_repo: "https://github.com/hisamatsu/ansible-mydev.git"
+myansible_checkout_location: "{{ ansible_user_home}}/ghq/github.com/hisamatsu/ansible-mydev.git"

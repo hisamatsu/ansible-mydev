@@ -63,6 +63,11 @@
     - role: ssh_config
 
   post_tasks:
+  - name: Delete repository
+    ansible.builtin.file:
+      path: "{{ myansible_checkout_location }}"
+      state: absent
+
   - name: ghq get myansible
     ansible.builtin.command: "ghq get --update {{ myansible_repo }}"
     environment:

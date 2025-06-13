@@ -1,4 +1,9 @@
 ---
+- name: Delete repository
+  ansible.builtin.file:
+    path: "{{ dotfiles_checkout_location }}"
+    state: absent
+
 - name: ghq get dotfiles
   ansible.builtin.command: "ghq get --update {{ dotfiles_repo }}"
   environment:
