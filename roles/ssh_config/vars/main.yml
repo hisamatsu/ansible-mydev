@@ -10,6 +10,7 @@ ssh_config_files:
   - agent_keys
   - conf.d/cedownload.dayz.conf
   - conf.d/dayz.conf
+  - conf.d/home.conf
   - conf.d/misc.conf
   - conf.d/oecu.conf
   - config
