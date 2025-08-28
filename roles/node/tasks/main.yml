@@ -12,13 +12,6 @@
   args:
     executable: /bin/bash
 
-- name: Add NVM init to shell profile
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    line: 'export NVM_DIR="{{ nvm_install_dir }}"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-    state: present
-    create: yes
-
 - name: Load NVM and install Node.js
   shell: |
     export NVM_DIR="{{ nvm_install_dir }}"
