@@ -20,10 +20,14 @@ However, everything is documented here.
 
 Packages (installed with apt):
   - build-essential
+  - cmake
   - tmux
+  - curl
+  - git
 
 Packages (installed with go install):
   - ghq
+  - lazygit
 
 Packages (installed with cargo install):
   - bat
@@ -39,10 +43,15 @@ Packages (installed with git)
   - oh_my_tmux
   - bash_it
 
+Packages (installed with npm)
+  - cz-git
+  - czg
+
 Packages (installed with others):
   - neovim
   - go
   - rust
+  - node
 
 My [dotfiles](https://github.com/hisamatsu/dotfiles) are installed via ghq.
 
