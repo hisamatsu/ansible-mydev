@@ -1,0 +1,29 @@
+---
+- name: Ensure NVM directory exists
+  file:
+    path: "{{ nvm_install_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Install NVM
+  shell: |
+    export NVM_DIR="{{ nvm_install_dir }}"
+    [ -s "$NVM_DIR/nvm.sh" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
+  args:
+    executable: /bin/bash
+
+- name: Add NVM init to shell profile
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'export NVM_DIR="{{ nvm_install_dir }}"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+    state: present
+    create: yes
+
+- name: Load NVM and install Node.js
+  shell: |
+    export NVM_DIR="{{ nvm_install_dir }}"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install {{ node_version }}
+    nvm alias default {{ node_version }}
+  args:
+    executable: /bin/bash
