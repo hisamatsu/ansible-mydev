@@ -3,3 +3,5 @@ apt_install_packages:
   - build-essential
   - cmake
   - tmux
+  - curl
+  - git
