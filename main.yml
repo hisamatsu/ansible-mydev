@@ -55,6 +55,7 @@
     - role: go_install
     - role: rust
     - role: cargo_install
+    - role: nvm
     - role: neovim
     - role: fzf
     - role: oh_my_tmux
