@@ -1,0 +1,7 @@
+---
+node_version: "lts/*"
+nvm_install_dir: "{{ ansible_env.HOME }}/.nvm"
+
+npm_global_packages:
+  - cz-git
+  - czg

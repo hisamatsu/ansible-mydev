@@ -1,0 +1,19 @@
+---
+- name: Update npm to latest version
+  shell: |
+    export NVM_DIR="{{ nvm_install_dir }}"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm use {{ node_version }}
+    npm install -g npm@latest
+  args:
+    executable: /bin/bash
+
+- name: Install global npm packages
+  shell: |
+    export NVM_DIR="{{ nvm_install_dir }}"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm use {{ node_version }}
+    npm install -g {{ item }}
+  args:
+    executable: /bin/bash
+  loop: "{{ npm_global_packages }}"
