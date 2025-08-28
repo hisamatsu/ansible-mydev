@@ -1,3 +1,4 @@
 ---
 go_get_install_packages:
   - github.com/x-motemen/ghq@latest
+  - github.com/jesseduffield/lazygit@latest

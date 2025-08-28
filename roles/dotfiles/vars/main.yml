@@ -12,6 +12,7 @@ dotfiles:
   - .bash_aliases
   - .bashrc
   - .config/fzf/fzf.bash.local
+  - .config/lazygit/config.yml
   - .config/git/config
   - .config/starship/starship.toml
   - .config/tmux/tmux.conf.local
