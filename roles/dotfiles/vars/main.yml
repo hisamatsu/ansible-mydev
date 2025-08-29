@@ -16,4 +16,5 @@ dotfiles:
   - .config/git/config
   - .config/starship/starship.toml
   - .config/tmux/tmux.conf.local
+  - .czrc
   - .profile
