@@ -5,3 +5,4 @@ apt_install_packages:
   - tmux
   - curl
   - git
+  - gh
