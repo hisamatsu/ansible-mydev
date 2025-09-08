@@ -15,6 +15,7 @@ vimrc_files:
   - lua/config/comment.lua
   - lua/config/fzf-lua.lua
   - lua/config/gitsigns.lua
+  - lua/config/lazygit.lua
   - lua/config/lualine.lua
   - lua/config/oil.lua
   - lua/lazy_nvim.lua
