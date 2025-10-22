@@ -6,4 +6,5 @@ cargo_install_packages:
   - fd-find
   - ripgrep
   - starship
+  - yazi-build
   - zoxide
